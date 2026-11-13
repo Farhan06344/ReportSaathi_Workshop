@@ -4,8 +4,8 @@
 
 @layer base {
   body {
-    background-color: #080C14;
-    color: #E2E8F0;
+    background-color: #070709;
+    color: #F4F4F5;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
@@ -13,40 +13,46 @@
   }
 }
 
-/* Futuristic background grid */
-.bg-grid {
-  background-size: 32px 32px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-/* Subtle glow card */
-.glass-panel {
-  background: rgba(13, 19, 33, 0.75);
-  backdrop-filter: blur(12px);
+/* Monochromatic architectural panel */
+.mono-card {
+  background: #111115;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.glass-panel:hover {
-  border-color: rgba(20, 184, 166, 0.3);
+.mono-card-subtle {
+  background: #17171C;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Subtle topological wireframe wave overlay */
+.topographic-bg {
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+}
+
+/* Checkerboard glyph icon style from the reference image */
+.glyph-checker {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+}
+.glyph-checker span {
+  width: 3px;
+  height: 3px;
+  background-color: #71717A;
 }
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #080C14;
+  background: #070709;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
-  border-radius: 3px;
+  background: #27272A;
+  border-radius: 2px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #3F3F46;
 }

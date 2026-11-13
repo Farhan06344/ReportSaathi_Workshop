@@ -153,21 +153,21 @@ export default function UploadModal({ isOpen, onClose, onUploadSuccess }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="bg-[#0B101D] rounded-3xl max-w-xl w-full p-6 sm:p-8 border border-white/[0.12] shadow-2xl relative space-y-6 text-white">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+      <div className="bg-[#111115] rounded-2xl max-w-xl w-full p-6 sm:p-8 border border-white/[0.12] shadow-2xl relative space-y-6 text-white">
         
         {/* Modal Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
           <div className="flex items-center space-x-2.5">
-            <div className="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center border border-teal-500/30">
-              <Upload className="w-5 h-5 stroke-[2.2]" />
+            <div className="w-10 h-10 rounded-xl bg-yellow-400 text-black flex items-center justify-center font-bold">
+              <Upload className="w-5 h-5 stroke-[2.5]" />
             </div>
             <div>
               <h3 className="font-extrabold text-lg text-white font-sans uppercase">
                 Upload Medical Report
               </h3>
               <p className="text-xs font-mono text-slate-400">
-                PDF, JPG, PNG • FASTAPI BACKEND EXTRACTION
+                PDF, JPG, PNG • MAX 10MB
               </p>
             </div>
           </div>
@@ -183,14 +183,14 @@ export default function UploadModal({ isOpen, onClose, onUploadSuccess }) {
 
         {/* 1. Validation or API Error Alert */}
         {validationError && (
-          <div className="p-4 bg-rose-500/10 border border-rose-500/30 rounded-2xl flex items-start space-x-3 text-xs sm:text-sm text-rose-200 animate-fadeIn">
+          <div className="p-4 bg-rose-500/15 border border-rose-500/30 rounded-xl flex items-start space-x-3 text-xs sm:text-sm text-rose-200 animate-fadeIn">
             <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
             <div className="flex-1 space-y-2 font-mono">
               <p className="leading-relaxed">{validationError}</p>
               {status === 'error' && (
                 <button
                   onClick={handleRetry}
-                  className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-rose-600 text-white font-semibold text-xs hover:bg-rose-500 transition-colors uppercase tracking-wider"
+                  className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-yellow-400 text-black font-extrabold text-xs hover:bg-yellow-300 transition-colors uppercase tracking-wider"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                   <span>Retry Upload</span>
@@ -203,23 +203,23 @@ export default function UploadModal({ isOpen, onClose, onUploadSuccess }) {
         {/* 2. Loading State */}
         {status === 'loading' ? (
           <div className="py-12 text-center space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 mx-auto">
+            <div className="w-16 h-16 rounded-2xl bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center text-yellow-400 mx-auto">
               <Loader2 className="w-8 h-8 animate-spin" />
             </div>
 
             <div className="space-y-2 max-w-sm mx-auto font-mono">
               <h4 className="font-extrabold text-base text-white">
-                PROCESSING_ON_BACKEND ({loadingProgress}%)
+                PROCESSING_TELEMETRY ({loadingProgress}%)
               </h4>
-              <p className="text-xs text-teal-300 min-h-[2rem]">
+              <p className="text-xs text-yellow-300 min-h-[2rem]">
                 {loadingStage}
               </p>
             </div>
 
-            {/* Progress Bar */}
-            <div className="w-full bg-[#121A2D] rounded-full h-2 overflow-hidden max-w-md mx-auto border border-white/[0.08]">
+            {/* Yellow Accent Progress Bar */}
+            <div className="w-full bg-[#1A1A22] rounded-full h-2 overflow-hidden max-w-md mx-auto border border-white/[0.08]">
               <div 
-                className="bg-gradient-to-r from-teal-400 via-cyan-300 to-emerald-400 h-2 rounded-full transition-all duration-300 ease-out shadow-sm shadow-teal-400"
+                className="bg-yellow-400 h-2 rounded-full transition-all duration-300 ease-out shadow-sm shadow-yellow-400/50"
                 style={{ width: `${loadingProgress}%` }}
               ></div>
             </div>
@@ -231,7 +231,7 @@ export default function UploadModal({ isOpen, onClose, onUploadSuccess }) {
         ) : status === 'success' ? (
           /* 3. Success State */
           <div className="py-12 text-center space-y-3 font-mono">
-            <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mx-auto animate-bounce">
+            <div className="w-16 h-16 rounded-2xl bg-yellow-400 text-black flex items-center justify-center mx-auto animate-bounce font-bold">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h4 className="font-extrabold text-lg text-white">EXTRACTION_SUCCESSFUL</h4>
@@ -255,19 +255,19 @@ export default function UploadModal({ isOpen, onClose, onUploadSuccess }) {
               onDragOver={handleDrag}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-2xl p-8 sm:p-10 text-center cursor-pointer transition-all ${
+              className={`border-2 border-dashed rounded-xl p-8 sm:p-10 text-center cursor-pointer transition-all ${
                 dragActive
-                  ? 'border-teal-400 bg-teal-500/10 scale-[0.99]'
+                  ? 'border-yellow-400 bg-yellow-400/10 scale-[0.99]'
                   : selectedFile
-                  ? 'border-teal-500/60 bg-teal-500/5'
-                  : 'border-white/[0.12] hover:border-teal-500/50 hover:bg-white/[0.02]'
+                  ? 'border-yellow-400/60 bg-yellow-400/5'
+                  : 'border-white/[0.12] hover:border-yellow-400/60 hover:bg-white/[0.02]'
               }`}
             >
-              <div className="w-12 h-12 mx-auto mb-3 rounded-2xl bg-teal-500/10 text-teal-400 flex items-center justify-center border border-teal-500/30">
+              <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-white/[0.06] text-yellow-400 flex items-center justify-center border border-white/[0.08]">
                 {selectedFile ? (
                   <FileCheck className="w-6 h-6" />
                 ) : (
-                  <Upload className="w-6 h-6" />
+                  <Upload className="w-6 h-6 stroke-[2.5]" />
                 )}
               </div>
 
@@ -277,23 +277,23 @@ export default function UploadModal({ isOpen, onClose, onUploadSuccess }) {
                   <p className="text-xs font-mono text-slate-400">
                     {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • VALIDATED
                   </p>
-                  <p className="text-xs text-teal-400 font-semibold pt-1">
+                  <p className="text-xs text-yellow-400 font-semibold pt-1">
                     Click to select a different file
                   </p>
                 </div>
               ) : (
                 <div className="space-y-1.5">
                   <p className="text-sm font-bold text-slate-200">
-                    Drag and drop your report here, or <span className="text-teal-400 underline">browse</span>
+                    Drag and drop your report here, or <span className="text-yellow-400 underline">browse</span>
                   </p>
                   <p className="text-xs font-mono text-slate-500">
-                    PDF, JPG, PNG (MAX 10MB)
+                    PDF, JPG, PNG (UP TO 10MB)
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Action buttons */}
+            {/* Action buttons with Yellow Button for Primary */}
             <div className="flex items-center justify-end space-x-3 pt-2 font-mono">
               <button
                 type="button"
@@ -307,7 +307,7 @@ export default function UploadModal({ isOpen, onClose, onUploadSuccess }) {
                 type="button"
                 disabled={!selectedFile}
                 onClick={handleStartAnalysis}
-                className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-teal-400 to-cyan-400 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 text-xs font-bold tracking-wider uppercase shadow-md shadow-teal-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-500 disabled:opacity-40 disabled:cursor-not-allowed text-black text-xs font-black tracking-wider uppercase shadow-md shadow-yellow-400/20 active:scale-95 transition-all"
               >
                 <Sparkles className="w-4 h-4" />
                 <span>UPLOAD_TO_BACKEND</span>

@@ -34,16 +34,16 @@ export default function App() {
   const handleUploadSuccess = (analyzedReport) => {
     setSelectedReport(analyzedReport);
     setCurrentView('results');
-    showToast(`SUCCESS: Document "${analyzedReport.uploadedFileName || analyzedReport.title}" processed.`);
+    showToast(`SUCCESS: Document "${analyzedReport.uploadedFileName || analyzedReport.filename || analyzedReport.title}" processed.`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#080C14] text-slate-100 antialiased selection:bg-teal-500/30 selection:text-teal-200">
+    <div className="min-h-screen flex flex-col bg-[#070709] text-slate-100 antialiased selection:bg-yellow-400 selection:text-black">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center space-x-3 px-4 py-3 bg-[#0D1525] text-white text-xs sm:text-sm font-mono rounded-2xl shadow-2xl animate-fadeIn border border-teal-500/30">
-          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center space-x-3 px-4 py-3 bg-[#131318] text-white text-xs sm:text-sm font-mono rounded-xl shadow-2xl animate-fadeIn border border-yellow-400/30">
+          <CheckCircle2 className="w-5 h-5 text-yellow-400 shrink-0" />
           <span>{toastMessage}</span>
           <button 
             onClick={() => setToastMessage(null)}
@@ -98,13 +98,13 @@ export default function App() {
         onUploadSuccess={handleUploadSuccess}
       />
 
-      {/* Footer */}
-      <footer className="border-t border-white/[0.08] bg-[#060910] py-8 mt-16 text-slate-500 text-xs font-mono">
+      {/* Footer styled after reference image hairline */}
+      <footer className="border-t border-white/[0.08] bg-[#050507] py-8 mt-16 text-slate-500 text-xs font-mono">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-2">
             <span className="font-extrabold text-white">REPORTSAATHI</span>
             <span>•</span>
-            <span className="text-teal-400">PATIENT HEALTH LITERACY DEMO</span>
+            <span className="text-yellow-400">PATIENT HEALTH LITERACY SYSTEM</span>
           </div>
 
           <div className="text-center sm:text-right text-[11px] text-slate-500 max-w-md leading-relaxed font-sans">
